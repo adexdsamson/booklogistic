@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.backdrop {
+  background-image: url(assets/backdrop.png);
+  background-size: cover;
+  background-position: bottom;
+}
+.footdrop {
+  background-image: url(assets/footpic.png);
+  background-color: rgba(1, 14, 34, 0.9);
+  background-size: cover;
+}
+.navdrop {
+  background-image: url(assets/navdrop.png);
+  background-size: cover;
+}
