@@ -27,10 +27,10 @@ const Header = () => {
   }, [])
 
   return (
-    <div className={`w-full py-3 bg-[#2E3E55CC] opacity-${navPage == true ? 100 : 90} px-2 lg:px-10 flex justify-between items-center`}>
+    <div className={`w-full py-6 bg-[#2E3E55CC] opacity-${navPage == true ? 100 : 90} px-2 lg:px-10 flex justify-between items-center`}>
       {navPage == true ? 
         <div className='top-0 left-0 bg-black fixed w-full h-screen navdrop'>
-          <div className='bg-[#2E3E55CC] p-5'>
+          <div className='bg-[#2E3E55CC] p-10'>
             <img src={back} alt="" onClick={unRenderNavPage} />
             <div className='w-full flex flex-col mt-16 text-white gap-5 text-lg font-bold'>
               <NavLink to='/' > Contact Us </NavLink>
