@@ -1,4 +1,4 @@
-import { Button, Form } from "../components";
+import { Button } from "../components";
 import tracklocation from "../assets/tracklocation.png";
 import whatsapp from "../assets/whatsapp.png";
 import location from "../assets/location.png";
@@ -10,53 +10,36 @@ import lightfacebook from "../assets/lightfacebook.png";
 import lightwhatsapp from "../assets/lightwhatsapp.png";
 import lightgoogleplus from "../assets/lightgoogleplus.png";
 import lightinstagram from "../assets/lightinstagram.png";
+import { Heropage, Tracking } from "./sections";
+import { TextAreaInput, TextInput } from "../components/input/TextInput";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Form } from "../components/Form/index";
+
+type FormState = {
+  email: string;
+  pickUp: string;
+  additionalPickupInfo: string;
+  dropOff: string;
+  additionalDropOff: string;
+};
+
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    name: yup.string().required(),
+    message: yup.string().required(),
+  })
+  .required();
 
 const Home = () => {
+  const handleForm = async (data: FormState) => { };
+  
+
   return (
     <div>
-      <div className="w-full lg:h-screen backdrop lg:flex lg:flex-row lg:justify-between items-center lg:px-10">
-        <div className="h-3/4 pt-24 lg:pt-5 px-2 flex items-center">
-          <div className="lg:w-3/4">
-            <h2 className="text-4xl lg:text-7xl text-white font-bold">
-              {" "}
-              Find Your preferred logistic company{" "}
-            </h2>
-            <h4 className="py-2 lg:text-3xl text-lg text-white my-3 ">
-              {" "}
-              From pickup to destination, we connect you to a verified dispatch
-              company.{" "}
-            </h4>
-            <div className="w-[150px]">
-              <Button text="GET IN TOUCH" />
-            </div>
-          </div>
-        </div>
-        <div className="w-full lg:w-1/2 h-fit mt-10">
-          <Form />
-        </div>
-      </div>
-      <div className="lg:h-[40rem] py-16 lg:py-0 w-full px-2 lg:px-10 flex justify-between items-center">
-        <div className="h-full w-full">
-          <img
-            src={tracklocation}
-            alt=""
-            className="h-full w-full object-contain"
-          />
-        </div>
-        <div className="h-full w-3/4 flex flex-col justify-center">
-          <h4 className="font-bold"> GET UPDATE </h4>
-          <h2 className="text-lg font-extrabold"> TRACK YOUR ITEM </h2>
-          <form className="mt-5 ">
-            <input
-              name="tracking-number"
-              className="border-b-2 w-3/4 focus:border-b-2 outline-none"
-            />
-            <div className="w-3/4 lg:w-[30%] mt-5">
-              <Button text="CHECK NOW" />
-            </div>
-          </form>
-        </div>
-      </div>
+      <Heropage />
+      <Tracking />
       <div className="h-screen flex flex-col">
         <div className="w-full py-20 flex justify-between items-center px-2 lg:px-10 text-white bg-[#2E3E55]">
           <div>
@@ -74,23 +57,31 @@ const Home = () => {
           </div>
         </div>
         <div className="w-full h-screen footdrop flex justify-between px-2 gap-5 lg:gap-24 lg:px-10 py-12">
-          <form className="w-1/2 flex flex-col justify-between text-white font-bold">
-            <div className="w-full flex flex-col">
-              <label> NAME </label>
-              <input className="p-3 mt-1 rounded-md text-black text-sm" />
-            </div>
-            <div className="w-full flex flex-col">
-              <label> EMAIL </label>
-              <input className="p-3 mt-1 rounded-md text-black text-sm" />
-            </div>
-            <div className="w-full flex flex-col">
-              <label> MESSAGE </label>
-              <textarea className="h-[200px] p-3 mt-1 rounded-md text-black text-sm"></textarea>
-            </div>
+          <Form
+            onSubmit={handleForm}
+            resolver={yupResolver(schema)}
+            className="w-1/2 flex flex-col justify-between text-white font-bold"
+          >
+            <TextInput
+              name="name"
+              label="NAME"
+              inputClass="p-3 mt-1 rounded-md text-black text-sm"
+            />
+            <TextInput
+              name="email"
+              label="EMAIL"
+              inputClass="p-3 mt-1 rounded-md text-black text-sm"
+            />
+            <TextAreaInput
+              rows={8}
+              name="message"
+              label="MESSAGE"
+              className="h-[200px] p-3 mt-1 rounded-md text-black text-sm"
+            />
             <div className="w-3/4 lg:w-1/4 mt-5">
               <Button text="Send" />
             </div>
-          </form>
+          </Form>
           <div className="flex flex-col gap-10 w-1/2 items-start text-white text-sm">
             <div className="h-4 flex">
               <img src={location} alt="" className="w-5" />
@@ -121,7 +112,7 @@ const Home = () => {
             src={logo}
             alt=""
             width="100"
-            className="bg-black rounded-xl mb-10"
+            className="bg-black rounded-xl mb-5 mt-10"
           />
           <p className="text-[#B4B2B2]">
             {" "}

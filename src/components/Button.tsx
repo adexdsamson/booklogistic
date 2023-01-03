@@ -9,7 +9,7 @@ const Button = (props:ThisTypes) => {
   const {text} = props;
 
   return (
-    <div className='w-full text-center py-2 bg-[#DF6E1E] text-white font-bold uppercase rounded-md'> {text} </div>
+    <div className='w-full text-center py-2 bg-[#DF6E1E] text-white font-bold uppercase rounded-md mt-7'> {text} </div>
   )
 }
 
